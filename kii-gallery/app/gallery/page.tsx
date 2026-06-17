@@ -1,9 +1,35 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function GalleryPage() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setSelectedIndex(null);
+      }
+
+     if (e.key === "ArrowRight") {
+  setSelectedIndex((prev) =>
+    prev === null ? prev : (prev + 1) % visibleImages.length
+  );
+}
+
+if (e.key === "ArrowLeft") {
+  setSelectedIndex((prev) =>
+    prev === null ? prev : (prev - 1 + visibleImages.length) % visibleImages.length
+  );
+}
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
 
@@ -26,7 +52,10 @@ export default function GalleryPage() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    localStorage.setItem(
+      "favorites",
+      JSON.stringify(favorites)
+    );
   }, [favorites]);
 
   const visibleImages = showOnlyFavorites ? favorites : images;
@@ -62,11 +91,21 @@ export default function GalleryPage() {
 
   return (
     <main className="min-h-screen bg-[#FCFAF5] p-6">
+
+      <Link
+        href="/"
+        className="mb-6 inline-block text-[#5D4B3E] hover:opacity-70 transition"
+      >
+        ← トップへ戻る
+      </Link>
+
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-4xl text-[#5D4B3E]">
-            Kii Gallery
-          </h1>
+          <img
+            src="/logo.png"
+            alt="kii logo"
+            className="h-24 w-auto"
+          />
 
           <p className="mt-2 text-[#8A7A68]">
             ♥ お気に入り {favorites.length}
@@ -135,6 +174,9 @@ export default function GalleryPage() {
 
       {selectedIndex !== null && visibleImages.length > 0 && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-6">
+          <div className="absolute top-6 left-1/2 -translate-x-1/2 rounded-full bg-black/40 px-4 py-2 text-sm text-white backdrop-blur-md">
+            {selectedIndex !== null ? selectedIndex + 1 : 0} / {images.length}
+          </div>
           <button
             onClick={() => setSelectedIndex(null)}
             className="absolute top-6 right-6 text-white text-3xl"
