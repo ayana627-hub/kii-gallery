@@ -32,7 +32,7 @@ export default function Home() {
           <img
   src="/logo.png"
   alt="Kii logo"
-  className="h-40 md:h-48 w-auto"
+  className="h-40 md:h-56 w-auto"
 />
         </div>
 
