@@ -1,5 +1,22 @@
+"use client";
 
 export default function Home() {
+
+  const shareLink = async () => {
+  const shareData = {
+    title: "Kii Gallery",
+    text: "写真ギャラリーを共有します♡",
+    url: window.location.href,
+  };
+
+  if (navigator.share) {
+    await navigator.share(shareData);
+  } else {
+    await navigator.clipboard.writeText(window.location.href);
+    alert("リンクをコピーしました♡");
+  }
+};
+
   return (
     <main
       className="min-h-screen bg-[#FCFAF5] text-[#5D4B3E]"
@@ -64,9 +81,13 @@ export default function Home() {
   まとめて保存
 </a>
 
-          <button className="bg-[#FCFAF5]/60 backdrop-blur-md rounded-2xl py-4 shadow-md border border-white/30 hover:scale-[1.02] hover:brightness-105 active:scale-[0.98] transition-all duration-300 border border-[#5D4B3E]/10 text-base">
-            家族にシェア
-          </button>
+          <button
+  onClick={shareLink}
+  className="bg-[#FCFAF5]/60 backdrop-blur-md rounded-2xl py-4 shadow-md border border-white/30 text-center hover:scale-[1.02] hover:brightness-105 active:scale-[0.98] transition-all duration-300"
+>
+  家族にシェア
+</button>
+
 
           <a
   href="/gallery?favorites=true"
