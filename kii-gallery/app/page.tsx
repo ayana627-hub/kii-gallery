@@ -32,11 +32,11 @@ export default function Home() {
           <img
   src="/logo.png"
   alt="Kii logo"
-  className="h-48 w-auto"
+  className="h-36 w-auto"
 />
         </div>
 
-        <div className="mb-8 text-right">
+        <div className="mb-8 pl-4">
           <h1 className="text-3xl md:text-5xl tracking-wide font-light">
             half birthday
           </h1>
