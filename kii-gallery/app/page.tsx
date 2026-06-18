@@ -37,7 +37,7 @@ export default function Home() {
         </div>
 
         <div className="mb-8 text-right">
-          <h1 className="text-5xl tracking-wide font-light">
+          <h1 className="text-3xl md:text-5xl tracking-wide font-light">
             half birthday
           </h1>
           <p className="mt-3 text-sm tracking-[0.25em] leading-relaxed">
