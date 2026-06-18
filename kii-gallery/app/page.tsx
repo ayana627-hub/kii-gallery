@@ -28,11 +28,11 @@ export default function Home() {
     >
       <div className="min-h-screen bg-[#FCFAF5]/40 backdrop-blur-[1px] px-6 py-10 flex flex-col justify-end">
 
-        <div className="absolute top-8 left-8 text-left">
+        <div className="absolute top-8 left-4 text-left">
           <img
   src="/logo.png"
   alt="Kii logo"
-  className="h-36 w-auto"
+  className="h-40 md:h-48 w-auto"
 />
         </div>
 
