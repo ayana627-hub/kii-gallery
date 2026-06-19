@@ -104,7 +104,7 @@ if (e.key === "ArrowLeft") {
           <img
             src="/logo.png"
             alt="kii logo"
-            className="h-24 w-auto"
+            className="h-30 w-auto"
           />
 
           <p className="mt-2 text-[#8A7A68]">
