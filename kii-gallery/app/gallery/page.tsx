@@ -112,22 +112,6 @@ if (e.key === "ArrowLeft") {
           </p>
         </div>
 
-        <div className="flex gap-2">
-          <button
-            onClick={() => scroll("left")}
-            className="rounded-full bg-white px-4 py-2 text-[#5D4B3E] shadow"
-          >
-            ←
-          </button>
-
-          <button
-            onClick={() => scroll("right")}
-            className="rounded-full bg-white px-4 py-2 text-[#5D4B3E] shadow"
-          >
-            →
-          </button>
-        </div>
-      </div>
 
       <button
         onClick={() => {
