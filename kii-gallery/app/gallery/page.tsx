@@ -162,12 +162,6 @@ if (e.key === "ArrowLeft") {
             ×
           </button>
 
-          <button
-            onClick={prevImage}
-            className="absolute left-4 text-white text-4xl"
-          >
-            ‹
-          </button>
 
           <div
   onClick={(e) => e.stopPropagation()}
@@ -202,12 +196,6 @@ if (e.key === "ArrowLeft") {
             </div>
           </div>
 
-          <button
-            onClick={nextImage}
-            className="absolute right-4 text-white text-4xl"
-          >
-            ›
-          </button>
         </div>
       )}
     </main>
