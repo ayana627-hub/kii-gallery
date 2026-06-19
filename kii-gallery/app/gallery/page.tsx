@@ -148,56 +148,44 @@ if (e.key === "ArrowLeft") {
       )}
 
       {selectedIndex !== null && visibleImages.length > 0 && (
-        <div
-  onClick={() => setSelectedIndex(null)}
-  className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
->
-          <div className="absolute top-6 left-1/2 -translate-x-1/2 rounded-full bg-black/40 px-4 py-2 text-sm text-white backdrop-blur-md">
-            {selectedIndex !== null ? selectedIndex + 1 : 0} / {images.length}
-          </div>
-          <button
-            onClick={() => setSelectedIndex(null)}
-            className="absolute top-6 right-6 text-white text-3xl"
-          >
-            ×
-          </button>
+  <div
+    onClick={() => setSelectedIndex(null)}
+    className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
+  >
+    <button
+      onClick={() => setSelectedIndex(null)}
+      className="absolute top-6 right-6 text-white text-3xl"
+    >
+      ×
+    </button>
 
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="flex flex-col items-center gap-5"
+    >
+      <img
+        src={visibleImages[selectedIndex]}
+        className="max-h-[78vh] rounded-3xl shadow-2xl"
+      />
 
-          <div
-  onClick={(e) => e.stopPropagation()}
-  className="flex flex-col items-center gap-5"
->
-            <img
-              src={visibleImages[selectedIndex]}
-              className="max-h-[78vh] rounded-3xl shadow-2xl"
-            />
+      <div className="flex gap-4">
+        <button
+          onClick={() => toggleFavorite(visibleImages[selectedIndex])}
+          className="rounded-full bg-white/90 px-6 py-3 text-[#5D4B3E] shadow-lg"
+        >
+          {favorites.includes(visibleImages[selectedIndex])
+            ? "♥ お気に入り"
+            : "♡ お気に入り"}
+        </button>
 
-            <div className="flex gap-4">
-              <button
-                onClick={() =>
-                  toggleFavorite(visibleImages[selectedIndex])
-                }
-                className="rounded-full bg-white/90 px-6 py-3 text-[#5D4B3E] shadow-lg"
-              >
-                {favorites.includes(
-                  visibleImages[selectedIndex]
-                )
-                  ? "♥ お気に入り"
-                  : "♡ お気に入り"}
-              </button>
-
-              <a
-                href={visibleImages[selectedIndex]}
-                download
-                className="rounded-full bg-[#EBD47A]/90 px-6 py-3 text-[#5D4B3E] shadow-lg"
-              >
-                ↓ 保存
-              </a>
-            </div>
-          </div>
-
-        </div>
-      )}
-    </main>
-  );
-}
+        <a
+          href={visibleImages[selectedIndex]}
+          download
+          className="rounded-full bg-[#EBD47A]/90 px-6 py-3 text-[#5D4B3E] shadow-lg"
+        >
+          ↓ 保存
+        </a>
+      </div>
+    </div>
+  </div>
+)}
