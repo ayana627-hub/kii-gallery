@@ -112,7 +112,6 @@ if (e.key === "ArrowLeft") {
           </p>
         </div>
 
-
       <button
         onClick={() => {
           setShowOnlyFavorites(!showOnlyFavorites);
