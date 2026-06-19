@@ -33,7 +33,6 @@ if (e.key === "ArrowLeft") {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
 
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const images = [
     "/photo1.jpg",
@@ -68,12 +67,6 @@ if (e.key === "ArrowLeft") {
     );
   };
 
-  const scroll = (direction: "left" | "right") => {
-    scrollRef.current?.scrollBy({
-      left: direction === "right" ? 360 : -360,
-      behavior: "smooth",
-    });
-  };
 
   const nextImage = () => {
     if (selectedIndex === null || visibleImages.length === 0) return;
@@ -130,7 +123,6 @@ if (e.key === "ArrowLeft") {
         </div>
       ) : (
         <div
-          ref={scrollRef}
           className="flex gap-4 overflow-x-auto snap-x pb-4"
         >
           {visibleImages.map((image, index) => (
