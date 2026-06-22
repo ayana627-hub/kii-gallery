@@ -68,19 +68,6 @@ if (e.key === "ArrowLeft") {
   };
 
 
-  const nextImage = () => {
-    if (selectedIndex === null || visibleImages.length === 0) return;
-
-    setSelectedIndex((selectedIndex + 1) % visibleImages.length);
-  };
-
-  const prevImage = () => {
-    if (selectedIndex === null || visibleImages.length === 0) return;
-
-    setSelectedIndex(
-      (selectedIndex - 1 + visibleImages.length) % visibleImages.length
-    );
-  };
 
   return (
     <main className="min-h-screen bg-[#FCFAF5] p-6">
@@ -116,6 +103,7 @@ if (e.key === "ArrowLeft") {
           ? "すべての写真を見る"
           : "お気に入りだけ見る"}
       </button>
+      </div>
 
       {visibleImages.length === 0 ? (
         <div className="rounded-[32px] bg-white/80 p-8 text-center text-[#5D4B3E] shadow">
@@ -188,4 +176,7 @@ if (e.key === "ArrowLeft") {
       </div>
     </div>
   </div>
-)}
+        )}
+    </main>
+  );
+}
