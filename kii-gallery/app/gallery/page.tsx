@@ -161,9 +161,9 @@ if (e.key === "ArrowLeft") {
           onClick={() => toggleFavorite(visibleImages[selectedIndex])}
           className="rounded-full bg-white/90 px-6 py-3 text-[#5D4B3E] shadow-lg"
         >
-          {favorites.includes(visibleImages[selectedIndex])
-            ? "♥ お気に入り"
-            : "♡ お気に入り"}
+         {favorites.includes(visibleImages[selectedIndex])
+  ? "❤️ 保存済み"
+  : "🤍 保存する"}
         </button>
 
         <a
