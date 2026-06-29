@@ -128,7 +128,7 @@ if (e.key === "ArrowLeft") {
                 onClick={() => toggleFavorite(image)}
                 className="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-2 text-[#5D4B3E] shadow-lg"
               >
-                {favorites.includes(image) ? "♥" : "♡"}
+                {favorites.includes(image) ? "❤️" : "🤍"}
               </button>
             </div>
           ))}
