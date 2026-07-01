@@ -49,18 +49,18 @@ export default function Home() {
         <section className="rounded-[28px] bg-[#FCFAF5]/70 backdrop-blur-md border border-white/50 shadow-xl p-6 mb-6">
           <div className="space-y-5 text-lg">
             <div className="flex items-center gap-4 border-b border-[#5D4B3E]/15 pb-4">
-              <span className="text-2xl">♡</span>
+              <span className="text-2xl">💛</span>
               <span>やまださま</span>
             </div>
 
             <div className="flex items-center gap-4 border-b border-[#5D4B3E]/15 pb-4">
-              <span className="text-2xl">⌖</span>
+              <span className="text-2xl">📍</span>
               <span>海の中道海浜公園</span>
             </div>
 
             <div className="flex items-center gap-4">
-              <span className="text-2xl">▣</span>
-              <span>98 photos</span>
+              <span className="text-2xl">📷</span>
+              <span>98枚</span>
             </div>
           </div>
         </section>
