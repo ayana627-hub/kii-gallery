@@ -5,6 +5,11 @@ import { useEffect, useRef, useState } from "react";
 
 export default function GalleryPage() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const [password, setPassword] = useState("");
+const [isUnlocked, setIsUnlocked] = useState(false);
+const GALLERY_PASSWORD = "ともだち";
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -67,7 +72,36 @@ if (e.key === "ArrowLeft") {
     );
   };
 
+  if (!isUnlocked) {
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-[#FCFAF5]">
+      <div className="bg-white p-8 rounded-3xl shadow-xl w-80 text-center">
+        <h1 className="text-2xl mb-6">🔒 Gallery</h1>
 
+        <input
+          type="password"
+          placeholder="パスワード"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full border rounded-xl px-4 py-3 mb-4"
+        />
+
+        <button
+          onClick={() => {
+            if (password === GALLERY_PASSWORD) {
+              setIsUnlocked(true);
+            } else {
+              alert("パスワードが違います");
+            }
+          }}
+          className="w-full rounded-xl bg-[#EBD47A] py-3"
+        >
+          ギャラリーを開く
+        </button>
+      </div>
+    </main>
+  );
+}
 
   return (
     <main className="min-h-screen bg-[#FCFAF5] p-6">
