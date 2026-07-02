@@ -79,7 +79,7 @@ if (e.key === "ArrowLeft") {
         <h1 className="text-2xl mb-6">🔒 Gallery</h1>
 
         <input
-          type="password"
+          type="text"
           placeholder="パスワード"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
