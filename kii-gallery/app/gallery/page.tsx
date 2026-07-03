@@ -9,6 +9,8 @@ export default function GalleryPage() {
   const [password, setPassword] = useState("");
 const [isUnlocked, setIsUnlocked] = useState(false);
 const GALLERY_PASSWORD = "ともだち";
+const UNLOCK_TIME = 3 * 60 * 60 * 1000;
+
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -62,6 +64,14 @@ if (e.key === "ArrowLeft") {
     );
   }, [favorites]);
 
+  useEffect(() => {
+  const unlockedAt = localStorage.getItem("galleryUnlockedAt");
+
+  if (unlockedAt && Date.now() - Number(unlockedAt) < UNLOCK_TIME) {
+    setIsUnlocked(true);
+  }
+}, []);
+
   const visibleImages = showOnlyFavorites ? favorites : images;
 
   const toggleFavorite = (image: string) => {
@@ -90,6 +100,7 @@ if (e.key === "ArrowLeft") {
           onClick={() => {
             if (password === GALLERY_PASSWORD) {
               setIsUnlocked(true);
+              localStorage.setItem("galleryUnlockedAt", Date.now().toString());
             } else {
               alert("パスワードが違います");
             }
