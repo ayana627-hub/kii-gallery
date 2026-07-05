@@ -2,14 +2,16 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { gallery } from "@/lib/gallery";
 
 export default function GalleryPage() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const [password, setPassword] = useState("");
 const [isUnlocked, setIsUnlocked] = useState(false);
-const GALLERY_PASSWORD = "ともだち";
-const UNLOCK_TIME = 3 * 60 * 60 * 1000;
+
+const GALLERY_PASSWORD = gallery.password;
+const UNLOCK_TIME = gallery.unlockTime;
 
 
   useEffect(() => {

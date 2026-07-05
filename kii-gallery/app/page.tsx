@@ -1,5 +1,5 @@
 "use client";
-
+import { gallery } from "@/lib/gallery";
 export default function Home() {
 
   const shareLink = async () => {
@@ -21,7 +21,7 @@ export default function Home() {
     <main
       className="min-h-screen bg-[#FCFAF5] text-[#5D4B3E]"
       style={{
-        backgroundImage: "url('/halfbirthday.jpg')",
+        backgroundImage: `url(${gallery.heroImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center top",
       }}
@@ -38,11 +38,10 @@ export default function Home() {
 
         <div className="mb-8 text-right">
           <h1 className="text-3xl md:text-5xl tracking-wide font-light">
-            half birthday
+            {gallery.title}
           </h1>
           <p className="mt-3 text-sm tracking-[0.25em] leading-relaxed">
-            capturing little moments,<br />
-            keeping them forever
+            {gallery.subtitle}
           </p>
         </div>
 
@@ -50,12 +49,12 @@ export default function Home() {
           <div className="space-y-5 text-lg">
             <div className="flex items-center gap-4 border-b border-[#5D4B3E]/15 pb-4">
               <span className="text-2xl">💛</span>
-              <span>やまださま</span>
+              <span>{gallery.client}さま</span>
             </div>
 
             <div className="flex items-center gap-4 border-b border-[#5D4B3E]/15 pb-4">
               <span className="text-2xl">📍</span>
-              <span>海の中道海浜公園</span>
+              <span>{gallery.location}</span>
             </div>
 
             <div className="flex items-center gap-4">
