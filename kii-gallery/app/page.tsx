@@ -58,10 +58,12 @@ export default function Home() {
             </div>
 
             <div className="flex items-center gap-4">
-              <span className="text-2xl">📷</span>
-              <div className="flex justify-between w-full">
-  <span>📷 {gallery.images.length}枚</span>
-  <span>🗓️ {gallery.expiresAt}</span>
+  <span className="text-2xl">📷</span>
+  <div className="flex flex-col">
+    <span>{gallery.images.length}枚</span>
+    <span className="text-xs text-gray-500">
+      🗓️ {gallery.expiresAt}まで
+    </span>
 </div>
             </div>
           </div>
