@@ -59,13 +59,10 @@ export default function Home() {
 
 <div className="flex items-center gap-4 border-b border-[#5D4B3E]/15 pb-4">
   <span className="text-2xl">📷</span>
+  <span>
+    {gallery.images.length}枚　公開期限：{gallery.expiresAt}まで
+  </span>
 
-  <div>
-    <p className="text-[#5D4B3E]">{gallery.images.length}枚</p>
-    <p className="text-xs text-[#8A7A68] mt-1">
-      公開期限：{gallery.expiresAt}まで
-    </p>
-  </div>
 </div>
           </div>
         </section>
