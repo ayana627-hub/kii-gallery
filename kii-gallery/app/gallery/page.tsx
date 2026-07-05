@@ -43,13 +43,7 @@ if (e.key === "ArrowLeft") {
   const [showOnlyFavorites, setShowOnlyFavorites] = useState(false);
 
 
-  const images = [
-    "/photo1.jpg",
-    "/photo2.jpg",
-    "/photo3.jpg",
-    "/photo4.jpg",
-    "/photo5.jpg",
-  ];
+const images = gallery.images; 
 
   useEffect(() => {
     const saved = localStorage.getItem("favorites");
@@ -74,6 +68,9 @@ if (e.key === "ArrowLeft") {
   }
 }, []);
 
+const isExpired =
+  new Date() > new Date(gallery.expiresAt);
+
   const visibleImages = showOnlyFavorites ? favorites : images;
 
   const toggleFavorite = (image: string) => {
@@ -83,7 +80,24 @@ if (e.key === "ArrowLeft") {
         : [...prev, image]
     );
   };
+  
+if (isExpired) {
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-[#FCFAF5]">
+      <div className="bg-white rounded-3xl p-10 shadow-xl text-center max-w-md">
+        <h1 className="text-2xl mb-4">📅 閲覧期限が終了しました</h1>
 
+        <p className="text-[#5D4B3E]">
+          このギャラリーの公開期間は終了しました。
+        </p>
+
+        <p className="text-sm text-gray-500 mt-4">
+          ご希望の方はお気軽にご連絡ください☺️
+        </p>
+      </div>
+    </main>
+  );
+}
   if (!isUnlocked) {
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#FCFAF5]">
