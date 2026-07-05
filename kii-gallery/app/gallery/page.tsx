@@ -69,7 +69,7 @@ const images = gallery.images;
 }, []);
 
 const isExpired =
-  new Date() > new Date(gallery.expiresAt);
+  Date.now() > new Date(gallery.expiresAt).getTime();
 
   const visibleImages = showOnlyFavorites ? favorites : images;
 
@@ -80,7 +80,7 @@ const isExpired =
         : [...prev, image]
     );
   };
-  
+
 if (isExpired) {
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#FCFAF5]">
