@@ -69,7 +69,7 @@ const images = gallery.images;
 }, []);
 
 const isExpired =
-  Date.now() > new Date(gallery.expiresAt).getTime();
+  Date.now() > new Date("2026-08-05").getTime();
 
   const visibleImages = showOnlyFavorites ? favorites : images;
 
