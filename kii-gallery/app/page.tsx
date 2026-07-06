@@ -60,7 +60,7 @@ export default function Home() {
 <div className="flex items-center gap-4 pb-4">
   <span className="text-2xl">📷</span>
   <span>
-    {gallery.images.length}枚 公開期限：2026-08-05まで
+    {gallery.images.length}枚　　🗓️ 2026-08-05まで
   </span>
 
 </div>
