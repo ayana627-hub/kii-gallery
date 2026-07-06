@@ -57,7 +57,7 @@ export default function Home() {
               <span>{gallery.location}</span>
             </div>
 
-<div className="flex items-center gap-4 border-b border-[#5D4B3E]/15 pb-4">
+<div className="flex items-center gap-4 pb-4">
   <span className="text-2xl">📷</span>
   <span>
     {gallery.images.length}枚 公開期限：2026-08-05まで
