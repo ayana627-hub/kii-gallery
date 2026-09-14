@@ -7,6 +7,7 @@ export const gallery = {
   subtitle: "capturing little moments,\nkeeping them forever.",
 
   unlockTime: 3 * 60 * 60 * 1000,
+  expiresAt: "2026-08-05",
 
   heroImage: "/halfbirthday.jpg",
 
