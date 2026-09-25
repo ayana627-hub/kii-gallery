@@ -8,6 +8,7 @@ type GalleryCardProps = {
   password: string;
   expiresAt: string;
   driveFolderId: string;
+  coverImageKey?: string;
   imageViews?: Record<string, number>;
   onEdit: () => void;
   onDelete: () => void;
@@ -19,7 +20,8 @@ export default function GalleryCard({
   password,
   expiresAt,
   driveFolderId,
-  imageViews = {},
+  coverImageKey,
+  imageViews,
   onEdit,
   onDelete,
 }: GalleryCardProps) {
@@ -28,23 +30,26 @@ export default function GalleryCard({
   const [uploading, setUploading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState("");
   const [images, setImages] = useState<
-  { key: string; size: number; updated: string }[]
->([]);
+    { key: string; size: number; updated: string }[]
+  >([]);
+  const coverImageUrl = coverImageKey
+    ? `${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${coverImageKey}`
+    : "";
 
-const loadImages = async () => {
-  if (!driveFolderId) return;
+  const loadImages = async () => {
+    if (!driveFolderId) return;
 
-  const res = await fetch(
-    `/api/r2/list?prefix=${encodeURIComponent(`${driveFolderId}/`)}`
-  );
+    const res = await fetch(
+      `/api/r2/list?prefix=${encodeURIComponent(`${driveFolderId}/`)}`
+    );
 
-  const data = await res.json();
-  setImages(data);
-};
+    const data = await res.json();
+    setImages(data);
+  };
 
-useEffect(() => {
-  loadImages();
-}, [driveFolderId]);
+  useEffect(() => {
+    loadImages();
+  }, [driveFolderId]);
 
   const handleSelectPhotos = () => {
     if (!driveFolderId) {
@@ -109,6 +114,20 @@ useEffect(() => {
 
   return (
     <div style={cardStyle}>
+      {coverImageUrl && (
+  <img
+    src={coverImageUrl}
+    alt={title}
+    style={{
+      width: "100%",
+      aspectRatio: "16 / 9",
+      objectFit: "cover",
+      borderRadius: 16,
+      marginBottom: 12,
+      display: "block",
+    }}
+  />
+)}
       <h3 style={{ margin: "0 0 12px" }}>{title}</h3>
 
       <p style={{ margin: "0 0 8px" }}>🔑 {password}</p>
@@ -123,68 +142,68 @@ useEffect(() => {
         style={{ display: "none" }}
       />
 
-     <button
-  type="button"
-  onClick={onEdit}
-  style={editButton}
->
-  ✏️ 編集
-</button>
-<a
-  href={`/gallery/${galleryId}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    display: "inline-block",
-    padding: "11px 18px",
-    borderRadius: 14,
-    border: "1px solid #E7D57A",
-    background: "#FFFDF5",
-    color: "#7A6130",
-    fontWeight: "bold",
-    textDecoration: "none",
-    marginLeft: 8,
-  }}
->
-  👀 お客さまページを見る
-</a>
-        <button
-          type="button"
-          onClick={handleSelectPhotos}
-          disabled={uploading}
-          style={{
-            ...uploadButton,
-            opacity: uploading ? 0.6 : 1,
-            cursor: uploading ? "not-allowed" : "pointer",
-          }}
-        >
-          {uploading ? "アップロード中…" : "📷 写真を追加"}
-        </button>
+      <button
+        type="button"
+        onClick={onEdit}
+        style={editButton}
+      >
+        ✏️ 編集
+      </button>
+      <a
+        href={`/gallery/${galleryId}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "inline-block",
+          padding: "11px 18px",
+          borderRadius: 14,
+          border: "1px solid #E7D57A",
+          background: "#FFFDF5",
+          color: "#7A6130",
+          fontWeight: "bold",
+          textDecoration: "none",
+          marginLeft: 8,
+        }}
+      >
+        👀 お客さまページを見る
+      </a>
+      <button
+        type="button"
+        onClick={handleSelectPhotos}
+        disabled={uploading}
+        style={{
+          ...uploadButton,
+          opacity: uploading ? 0.6 : 1,
+          cursor: uploading ? "not-allowed" : "pointer",
+        }}
+      >
+        {uploading ? "アップロード中…" : "📷 写真を追加"}
+      </button>
 
-     <a
-  href={`/admin/gallery/${galleryId}`}
-  style={{
-    display: "inline-block",
-    marginBottom: 18,
-    padding: "11px 18px",
-    borderRadius: 14,
-    border: "1px solid rgba(232,212,122,0.8)",
-    background: "rgba(255,255,255,0.7)",
-    color: "#5D4B3E",
-    fontWeight: "bold",
-    textDecoration: "none",
-  }}
->
-  📊 写真の反応を見る
-</a>
+      <a
+        href={`/admin/gallery/${galleryId}`}
+        style={{
+          display: "inline-block",
+          marginBottom: 18,
+          padding: "11px 18px",
+          borderRadius: 14,
+          border: "1px solid rgba(232,212,122,0.8)",
+          background: "rgba(255,255,255,0.7)",
+          color: "#5D4B3E",
+          fontWeight: "bold",
+          textDecoration: "none",
+        }}
+      >
+        📊 写真の反応を見る
+      </a>
 
-        <button
-  type="button"
-  onClick={onDelete}
-  style={deleteButton}
->
-          🗑 削除
-        </button>
+      <button
+        type="button"
+        onClick={onDelete}
+        style={deleteButton}
+      >
+        🗑 削除
+      </button>
 
       {uploadMessage && (
         <p style={{ margin: "14px 0 0", fontSize: 14 }}>

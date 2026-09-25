@@ -37,6 +37,7 @@ export default function AdminPage() {
   const [category, setCategory] = useState("");
   const [galleryPassword, setGalleryPassword] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
+  const [coverImageKey, setCoverImageKey] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -84,6 +85,7 @@ const resetForm = () => {
   setCategory("");
   setGalleryPassword("");
   setExpiresAt("");
+  setCoverImageKey("");
   setEditingId(null);
   setShowForm(false);
 };
@@ -96,6 +98,7 @@ const handleEditGallery = (gallery: any) => {
   setTitle(gallery.title ?? "");
   setGalleryPassword(gallery.password ?? "");
   setExpiresAt(gallery.expiresAt ?? "");
+  setCoverImageKey(gallery.coverImageKey ?? "");
   setShowForm(true);
 
   window.scrollTo({
@@ -120,6 +123,7 @@ const handleUpdateGallery = async () => {
   title,
   password: galleryPassword,
   expiresAt,
+  coverImageKey,
   updatedAt: serverTimestamp(),
 });
 
@@ -183,6 +187,7 @@ await addDoc(collection(db, "galleries"), {
   title,
   password: galleryPassword,
   expiresAt,
+  coverImageKey,
   driveFolderId: driveFolder.id,
   driveFolderUrl: driveFolder.webViewLink,
   createdAt: serverTimestamp(),
@@ -229,6 +234,8 @@ setShowForm(false);
   title={title}
   galleryPassword={galleryPassword}
   expiresAt={expiresAt}
+coverImageKey={coverImageKey}
+setCoverImageKey={setCoverImageKey}
   isEditing={editingId !== null}
   setClient={setClient}
   setLocation={setLocation}
@@ -257,6 +264,7 @@ setShowForm(false);
   password={gallery.password}
   expiresAt={gallery.expiresAt}
   driveFolderId={gallery.driveFolderId}
+  coverImageKey={gallery.coverImageKey}
   imageViews={gallery.imageViews ?? {}}
   onEdit={() => handleEditGallery(gallery)}
   onDelete={() => handleDeleteGallery(gallery.id)}

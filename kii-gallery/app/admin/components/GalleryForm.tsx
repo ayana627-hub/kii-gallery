@@ -55,17 +55,35 @@ export default function GalleryForm({
       />
 <select
   value={category}
-  onChange={(e) => setCategory(e.target.value)}
+  onChange={(e) => {
+  const newCategory = e.target.value;
+  setCategory(newCategory);
+
+  const titles: Record<string, string> = {
+    七五三: "七五三",
+    お宮参り: "お宮参り",
+    ハーフバースデー: "Half Birthday",
+    バースデー: "Birthday",
+    家族写真: "Family Photo",
+    季節の花: "Seasonal Flowers",
+    ニューボーン: "Newborn",
+    成人式: "成人式",
+  };
+
+  setTitle(titles[newCategory] ?? "");
+}}
   style={inputStyle}
 >
-  <option value="">撮影ジャンルを選択</option>
-  <option value="七五三">七五三</option>
-  <option value="お宮参り">お宮参り</option>
-  <option value="ハーフバースデー">ハーフバースデー</option>
-  <option value="バースデー">バースデー</option>
-  <option value="家族写真">家族写真</option>
-  <option value="ニューボーン">ニューボーン</option>
-  <option value="その他">その他</option>
+<option value="">撮影ジャンルを選択</option>
+<option value="七五三">七五三</option>
+<option value="お宮参り">お宮参り</option>
+<option value="ハーフバースデー">ハーフバースデー</option>
+<option value="バースデー">バースデー</option>
+<option value="家族写真">家族写真</option>
+<option value="季節の花">季節の花</option>
+<option value="ニューボーン">ニューボーン</option>
+<option value="成人式">成人式</option>
+<option value="その他">その他</option>
 </select>
 
 

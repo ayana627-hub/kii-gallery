@@ -20,6 +20,7 @@ export default function GalleryPage() {
   const [category, setCategory] = useState("");
   const [expiresAt, setExpiresAt] = useState("");
   const [folderId, setFolderId] = useState("");
+  const [coverImageKey, setCoverImageKey] = useState("");
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [showGallery, setShowGallery] = useState(false);
 
@@ -95,6 +96,7 @@ export default function GalleryPage() {
     setCategory(galleryData.category ?? "");
     setExpiresAt(galleryData.expiresAt ?? "");
     setSavedPassword(galleryData.password ?? "");
+    setCoverImageKey(galleryData.coverImageKey ?? "");
     setFolderId(currentFolderId);
 
     await loadImages(currentFolderId);
@@ -267,7 +269,7 @@ async function loadImages(currentFolderId: string) {
         backgroundColor: showGallery ? "#FCFAF5" : "transparent",
         backgroundImage:
           !showGallery && images.length > 0
-            ? `url(${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${images[0].key})`
+            ? `url(${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${coverImageKey || images[0].key})`
             : "none",
         backgroundSize: "cover",
         backgroundPosition: "center top",
@@ -289,7 +291,7 @@ async function loadImages(currentFolderId: string) {
               inset: 0,
               backgroundImage:
                 images.length > 0
-                  ? `url(${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${images[0].key})`
+                  ? `url(${process.env.NEXT_PUBLIC_R2_PUBLIC_URL}/${coverImageKey || images[0].key})`
                   : "none",
               backgroundSize: "cover",
               backgroundPosition: "center",

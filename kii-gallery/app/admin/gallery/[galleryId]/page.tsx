@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 type GalleryImage = {
@@ -59,6 +59,21 @@ export default function PhotoReactionPage() {
     const safeKey = imageKey.replace(/[~*\/\[\]\.]/g, "_");
     return imageViews[safeKey] ?? 0;
   };
+
+const setCoverImage = async (imageKey: string) => {
+  if (!galleryId) return;
+
+  try {
+    await updateDoc(doc(db, "galleries", galleryId), {
+      coverImageKey: imageKey,
+    });
+
+    alert("この写真を表紙に設定しました📷");
+  } catch (error) {
+    console.error(error);
+    alert("表紙の設定に失敗しました");
+  }
+};
 
   const sortedImages = [...images].sort(
     (a, b) => getViewCount(b.key) - getViewCount(a.key)
@@ -130,6 +145,23 @@ export default function PhotoReactionPage() {
               >
                 📷 {getViewCount(image.key)}　{favoriteImageKeys.includes(image.key) ? "❤️" : "♡"}
               </div>
+              <button
+  type="button"
+  onClick={() => setCoverImage(image.key)}
+  style={{
+    width: "100%",
+    marginTop: 8,
+    padding: "8px 10px",
+    border: "1px solid #E8D47A",
+    borderRadius: 12,
+    background: "#fff",
+    color: "#5D4B3E",
+    cursor: "pointer",
+    fontSize: 13,
+  }}
+>
+  📷 表紙にする
+</button>
             </div>
           ))}
         </div>
