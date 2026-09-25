@@ -819,6 +819,27 @@ async function loadImages(currentFolderId: string) {
               borderRadius: 14,
             }}
           />
+<a
+  href={`/api/r2/download?key=${encodeURIComponent(selectedImage.key)}`}
+  onClick={(e) => e.stopPropagation()}
+  style={{
+    position: "absolute",
+    bottom: 24,
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "10px 18px",
+    borderRadius: 999,
+    background: "rgba(255,255,255,0.92)",
+    color: "#5D4B3E",
+    textDecoration: "none",
+    fontSize: 14,
+    cursor: "pointer",
+    zIndex: 10001,
+    whiteSpace: "nowrap",
+  }}
+>
+  📷 この写真を保存
+</a>
         </div>
       )}
 
