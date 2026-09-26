@@ -5,6 +5,7 @@ type GalleryFormProps = {
   category: string;
   galleryPassword: string;
   expiresAt: string;
+  coverImageKey: string;
   isEditing: boolean;
 
   setTitle: (value: string) => void;
@@ -13,6 +14,7 @@ type GalleryFormProps = {
   setCategory: (value: string) => void;
   setGalleryPassword: (value: string) => void;
   setExpiresAt: (value: string) => void;
+  setCoverImageKey: (value: string) => void;
   onSubmit: () => void;
   onCancel: () => void;
 };
@@ -24,6 +26,8 @@ export default function GalleryForm({
   category,
   galleryPassword,
   expiresAt,
+  coverImageKey,
+  setCoverImageKey,
   isEditing,
   setTitle,
   setClient,
